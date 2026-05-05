@@ -957,7 +957,7 @@ function renderAsset(){
   const latestCats={};Object.values(assetSnapshots[latest.month]).forEach(({cat,amt})=>{latestCats[cat]=(latestCats[cat]||0)+amt;});
   const posTotal=Object.values(latestCats).filter(v=>v>0).reduce((s,v)=>s+v,0)||1;
   // 꺾은선 SVG (카테고리별, 대출 제외)
-  const allCats=[...new Set(recent6.flatMap(m=>Object.values(assetSnapshots[m]).map(i=>i.cat)))].filter(c=>c!=='대출');
+const allCats=[...new Set(recent6.flatMap(m=>Object.values(assetSnapshots[m]).map(i=>i.cat)))].filter(c=>c!=='대출'&&c!=='부동산');
   const catSeries=allCats.map(cat=>({cat,data:recent6.map(m=>Object.values(assetSnapshots[m]||{}).filter(i=>i.cat===cat).reduce((s,i)=>s+i.amt,0))}));
   const allVals=catSeries.flatMap(s=>s.data).filter(v=>v>0);
   const maxV=Math.max(...allVals,1);

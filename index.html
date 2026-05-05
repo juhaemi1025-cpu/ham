@@ -1094,9 +1094,46 @@ function renderCompare(){
 
 function renderFixed(){
   const total=fixedList.reduce((s,f)=>s+f.amt,0);
-  document.getElementById('fixed-body').innerHTML=`<div class="card"><div class="ctitle">📌 고정비 <span class="sub">월 ${fmtS(total)}</span></div>
-  ${fixedList.length===0?'<div class="empty">고정비를 추가해보세요</div>':fixedList.map(f=>`<div class="fxitem"><div class="fxl"><div class="fxdot" style="background:${FIXED_COL[f.cat]||'#ccc'}"></div><div><div class="fxname">${f.name}</div><div class="fxsub">${f.cat} · ${f.bank||''} · 매월 ${f.due}</div><div class="fxbtns"><button class="fxbtn fxedit" onclick="editFixed('${f.id}')">수정</button><button class="fxbtn fxdel" onclick="delFixed('${f.id}')">삭제</button></div></div></div><div style="font-size:13px;font-weight:700">${fmtS(f.amt)}</div></div>`).join('')}
-  </div>`;
+  const catGroups={};
+  fixedList.forEach(f=>{if(!catGroups[f.cat])catGroups[f.cat]=[];catGroups[f.cat].push(f);});
+  document.getElementById('fixed-body').innerHTML=`
+  <div class="card">
+    <div class="ctitle">📌 고정비 합계 <span class="sub">월 ${fmtS(total)}원</span></div>
+  </div>
+  ${Object.entries(catGroups).map(([cat,items])=>{
+    const catTotal=items.reduce((s,f)=>s+f.amt,0);
+    const catId='fx_'+cat.replace(/ /g,'_');
+    return`<div style="border:1.5px solid ${FIXED_COL[cat]||'#ccc'}60;border-radius:14px;margin-bottom:8px;overflow:hidden;background:var(--white);box-shadow:var(--shadow)">
+      <div onclick="const b=document.getElementById('${catId}');b.style.display=b.style.display==='none'?'block':'none'" style="display:flex;justify-content:space-between;align-items:center;padding:13px 14px;cursor:pointer">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:${FIXED_COL[cat]||'#ccc'}"></div>
+          <div style="font-size:13px;font-weight:800;color:var(--text)">${cat}</div>
+          <div style="font-size:10px;color:var(--text3)">${items.length}개</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:13px;font-weight:800;color:${FIXED_COL[cat]||'var(--text)'}">월 ${fmtS(catTotal)}원</div>
+          <span style="color:var(--text3);font-size:12px">▼</span>
+        </div>
+      </div>
+      <div id="${catId}" style="display:none;border-top:1px solid var(--border)">
+        ${items.map(f=>`
+        <div class="fxitem" style="padding:10px 14px">
+          <div class="fxl">
+            <div style="width:6px;height:6px;border-radius:50%;background:${FIXED_COL[cat]||'#ccc'};flex-shrink:0"></div>
+            <div>
+              <div class="fxname">${f.name}</div>
+              <div class="fxsub">${f.bank||''} · ${f.due}</div>
+              <div class="fxbtns">
+                <button class="fxbtn fxedit" onclick="editFixed('${f.id}')">수정</button>
+                <button class="fxbtn fxdel" onclick="delFixed('${f.id}')">삭제</button>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:13px;font-weight:700">${fmtS(f.amt)}원</div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('')}`;
 }
 
 function renderPurpose(){

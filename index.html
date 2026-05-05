@@ -145,7 +145,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 </style>
 </head>
 <body>
-<div id="pg-home" class="pg on"><div class="pghd"><div class="pgtitle">월별 <em>리포트</em> 📊</div><button onclick="openTxModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button></div><div id="home-ym"></div><div id="home-body"></div></div>
+<div id="pg-home" class="pg on"><div class="pghd"><div class="pgtitle">월별 <em>리포트</em> 📊</div><button onclick="openTxModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button><button onclick="exportData()" style="background:#2ea868;color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">💾 백업</button></div>
 <div id="pg-detail" class="pg"><div class="pghd"><button class="back-btn" onclick="goBack()">←</button><div class="pgtitle">지출 <em>내역</em> 📋</div><button onclick="openTxModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button></div><div id="detail-ym"></div><div id="detail-body"></div></div>
 <div id="pg-income" class="pg"><div class="pghd"><button class="back-btn" onclick="goBack()">←</button><div class="pgtitle">수입 <em>내역</em> 💵</div><button onclick="openTxModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button></div><div id="income-ym"></div><div id="income-body"></div></div>
 <div id="pg-saving" class="pg"><div class="pghd"><button class="back-btn" onclick="goBack()">←</button><div class="pgtitle">저축 <em>현황</em> 💎</div><button onclick="openSavingModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button></div><div id="saving-ym"></div><div id="saving-body"></div></div>
@@ -838,7 +838,28 @@ function renderPage(pg){
   else if(pg==='fixed')renderFixed();
   else if(pg==='purpose')renderPurpose();
 }
-
+function exportData(){
+  const data={
+    tx:JSON.parse(localStorage.getItem('tx')||'[]'),
+    sv:JSON.parse(localStorage.getItem('sv')||'[]'),
+    pu:JSON.parse(localStorage.getItem('pu')||'[]'),
+    fx:JSON.parse(localStorage.getItem('fx')||'[]'),
+    as:JSON.parse(localStorage.getItem('as')||'{}'),
+  };
+  const code=
+`const DEFAULT_TX=${JSON.stringify(data.tx,null,2)};
+const DEFAULT_SAVING=${JSON.stringify(data.sv,null,2)};
+const DEFAULT_PURPOSE=${JSON.stringify(data.pu,null,2)};
+const DEFAULT_FIXED=${JSON.stringify(data.fx,null,2)};
+const DEFAULT_ASSET_SNAPSHOTS=${JSON.stringify(data.as,null,2)};`;
+  navigator.clipboard.writeText(code).then(()=>{
+    alert('✅ 복사됐어요!\nGitHub index.html에서\nDEFAULT_TX 부분 찾아서 붙여넣기 하세요!');
+  }).catch(()=>{
+    // 복사 안되면 팝업으로 보여주기
+    const w=window.open('','_blank','width=600,height=400');
+    w.document.write('<pre style="font-size:11px;padding:10px">'+code+'</pre>');
+  });
+}
 function renderHome(){
   renderYM('home-ym');
   const exps=getTx(curYear,curMonth,'지출'),incs=getTx(curYear,curMonth,'수입'),savs=getSav(curYear,curMonth);

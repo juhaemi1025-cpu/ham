@@ -145,9 +145,9 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 </style>
 </head>
 <body>
-<div id="pg-home" class="pg on"><div class="pghd"><div class="pgtitle">월별 <em>리포트</em> 📊</div></div><div id="home-ym"></div><div id="home-body"></div></div>
-<div id="pg-detail" class="pg"><div class="pghd"><button class="back-btn" onclick="goBack()">←</button><div class="pgtitle">지출 <em>내역</em> 📋</div></div><div id="detail-ym"></div><div id="detail-body"></div></div>
-<div id="pg-income" class="pg"><div class="pghd"><button class="back-btn" onclick="goBack()">←</button><div class="pgtitle">수입 <em>내역</em> 💵</div></div><div id="income-ym"></div><div id="income-body"></div></div>
+<div id="pg-home" class="pg on"><div class="pghd"><div class="pgtitle">월별 <em>리포트</em> 📊</div><button onclick="openTxModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button></div><div id="home-ym"></div><div id="home-body"></div></div>
+<div id="pg-detail" class="pg"><div id="pg-detail" class="pg"><div class="pghd"><button class="back-btn" onclick="goBack()">←</button><div class="pgtitle">지출 <em>내역</em> 📋</div><button onclick="openTxModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button></div><div id="detail-ym"></div><div id="detail-body"></div></div>
+<div id="pg-income" class="pg"<div id="pg-income" class="pg"><div class="pghd"><button class="back-btn" onclick="goBack()">←</button><div class="pgtitle">수입 <em>내역</em> 💵</div><button onclick="openTxModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button></div><div id="income-ym"></div><div id="income-body"></div></div>
 <div id="pg-saving" class="pg"><div class="pghd"><button class="back-btn" onclick="goBack()">←</button><div class="pgtitle">저축 <em>현황</em> 💎</div><button onclick="openSavingModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button></div><div id="saving-ym"></div><div id="saving-body"></div></div>
 <div id="pg-asset" class="pg"><div class="pghd"><button class="back-btn" onclick="goBack()">←</button><div class="pgtitle">자산 <em>현황</em> 🏦</div><button onclick="openAssetModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 업데이트</button></div><div id="asset-body"></div></div>
 <div id="pg-compare" class="pg"><div class="pghd"><button class="back-btn" onclick="goBack()">←</button><div class="pgtitle">월별 <em>비교</em> 📈</div></div><div id="compare-body"></div></div>
@@ -822,7 +822,7 @@ function showPg(pg){
   document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('on'));
   const idx=['home','detail','income','saving','asset','compare','fixed','purpose'];
   const i=idx.indexOf(pg);if(i>=0)document.querySelectorAll('.nbtn')[i].classList.add('on');
-  document.getElementById('fab-btn').style.display=['home','detail','income'].includes(pg)?'flex':'none';
+  document.getElementById('fab-btn').style.display=['detail','income'].includes(pg)?'flex':'none';
   renderPage(pg);
 }
 function goBack(){showPg(prevPg==='home'?'home':prevPg);}

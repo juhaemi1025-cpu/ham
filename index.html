@@ -785,7 +785,7 @@ function save(){
   localStorage.setItem('fx',JSON.stringify(fixedList));
   localStorage.setItem('as',JSON.stringify(assetSnapshots));
 }
-function fmtS(n){const a=Math.abs(n);if(a>=100000000)return(n<0?'-':'')+(a/100000000).toFixed(1)+'억';if(a>=10000)return(n<0?'-':'')+Math.round(a/10000)+'만';return n.toLocaleString();}
+function fmtS(n){const a=Math.abs(n);if(a>=100000000)return(n<0?'-':'')+(a/100000000).toFixed(1)+'억';return n.toLocaleString()+'원';}
 function uid(){return 't'+Date.now()+Math.random().toString(36).slice(2,6);}
 function getTx(y,m,type){return txList.filter(t=>t.year===y&&t.month===m&&t.type===type);}
 function getSav(y,m){return savingList.filter(s=>{const d=new Date(s.date);return d.getFullYear()===y&&d.getMonth()+1===m;});}
@@ -875,7 +875,12 @@ function renderHome(){
   const catMap={};exps.forEach(t=>{catMap[t.cat]=(catMap[t.cat]||0)+t.amt;});
   const catE=Object.entries(catMap).sort((a,b)=>b[1]-a[1]),maxCat=catE[0]?catE[0][1]:1;
   const weeks=getWeeksInMonth(curYear,curMonth),now=new Date();
-  const weekData=weeks.map((w,i)=>({label:`${i+1}주차`,amt:exps.filter(t=>{const d=new Date(t.date);return d>=w.start&&d<=w.end;}).reduce((s,t)=>s+t.amt,0),start:w.start,end:w.end}));
+  const weekData=weeks.map((w,i)=>{
+  const wStart=new Date(w.start);wStart.setHours(0,0,0,0);
+  const wEnd=new Date(w.end);wEnd.setHours(23,59,59,999);
+  const amt=exps.filter(t=>{const d=new Date(t.date);d.setHours(12,0,0,0);return d>=wStart&&d<=wEnd;}).reduce((s,t)=>s+t.amt,0);
+  return{label:`${i+1}주차`,amt,start:wStart,end:wEnd};
+});
 
   document.getElementById('home-body').innerHTML=`
   <div class="ies-grid fade">

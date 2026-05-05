@@ -1088,9 +1088,9 @@ function renderCompare(){
       const sav=savingList.filter(s=>{const d=new Date(s.date);return d.getFullYear()===y&&d.getMonth()+1===m;}).reduce((s,t)=>s+t.amt,0);
       const mx=Math.max(inc,1);
       html+=`<div style="margin-bottom:12px"><div style="font-size:11px;font-weight:700;margin-bottom:5px;color:var(--text2)">${y}년 ${m}월</div>
-        <div class="cmpbar" style="margin-bottom:3px"><div class="cmplbl" style="color:var(--mint);width:28px;font-size:9px">수입</div><div class="cmptrack" style="height:16px"><div class="cmpfill" style="width:100%;background:#2ea868;height:100%"><span class="cmpftxt">${fmtS(inc)}</span></div></div></div>
-        <div class="cmpbar" style="margin-bottom:3px"><div class="cmplbl" style="color:var(--pink);width:28px;font-size:9px">지출</div><div class="cmptrack" style="height:16px"><div class="cmpfill" style="width:${Math.round(exp/mx*100)}%;background:#e05070;height:100%"><span class="cmpftxt">${fmtS(exp)}</span></div></div></div>
-        <div class="cmpbar"><div class="cmplbl" style="color:var(--purple);width:28px;font-size:9px">저축</div><div class="cmptrack" style="height:16px"><div class="cmpfill" style="width:${Math.round(sav/mx*100)}%;background:#9b7fe8;height:100%"><span class="cmpftxt">${fmtS(sav)}</span></div></div></div>
+        <div class="cmpbar" style="margin-bottom:3px"><div class="cmplbl" style="color:var(--mint);width:28px;font-size:9px">수입</div><div class="cmptrack" style="height:16px"><div class="cmpfill" style="width:100%;background:#93d9b8;height:100%"><span class="cmpftxt">${fmtS(inc)}</span></div></div></div>
+        <div class="cmpbar" style="margin-bottom:3px"><div class="cmplbl" style="color:var(--pink);width:28px;font-size:9px">지출</div><div class="cmptrack" style="height:16px"><div class="cmpfill" style="width:${Math.round(exp/mx*100)}%;background:#f4a7b9;height:100%"><span class="cmpftxt">${fmtS(exp)}</span></div></div></div>
+        <div class="cmpbar"><div class="cmplbl" style="color:var(--purple);width:28px;font-size:9px">저축</div><div class="cmptrack" style="height:16px"><div class="cmpfill" style="width:${Math.round(sav/mx*100)}%;background:#c9b8f0;height:100%"><span class="cmpftxt">${fmtS(sav)}</span></div></div></div>
       </div>`;
     });
     html+=`</div>`;

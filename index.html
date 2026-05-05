@@ -187,6 +187,11 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
   <div class="mrow"><label>금액 (원)</label><input type="number" id="sv-amt"></div>
   <div class="mrow"><label>메모</label><input type="text" id="sv-memo"></div>
   <div class="mbtns"><button class="mbtn cancel" onclick="closeSavingModal()">취소</button><button class="mbtn ok" onclick="saveSaving()">저장</button></div>
+  <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:11px">
+    <div style="font-size:11px;font-weight:700;margin-bottom:6px">📥 JSON 일괄 가져오기</div>
+    <textarea id="import-saving-json" style="width:100%;height:65px;border:1.5px solid var(--border);border-radius:10px;padding:8px;font-size:10px;font-family:monospace;resize:none;outline:none" placeholder='[{"date":"2026-05-01","name":"월 저축","cat":"기타저축","amt":500000,"memo":""}]'></textarea>
+    <button onclick="importSavingJson()" style="width:100%;margin-top:6px;padding:8px;background:#e8f0ff;color:var(--blue);border:none;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">가져오기</button>
+  </div>
 </div></div>
 <div class="modal-bg" id="modal-fixed"><div class="modal">
   <h3 id="modal-fixed-title">📌 고정비</h3><input type="hidden" id="fx-edit-id">
@@ -1221,6 +1226,22 @@ function importJson(){
     document.getElementById('import-json').value='';
     save();closeTxModal();renderAll();
     alert(added+'건 추가됐어요!'+(data.length-added>0?' ('+( data.length-added)+'건 중복 제외)':''));
+  }catch(e){alert('JSON 형식을 확인해주세요');}
+}
+  function importSavingJson(){
+  try{
+    const data=JSON.parse(document.getElementById('import-saving-json').value);
+    let added=0;
+    data.forEach(d=>{
+      const isDup=savingList.some(s=>s.date===d.date&&s.name===d.name&&s.amt===parseInt(d.amt));
+      if(!isDup){
+        savingList.push({id:uid(),date:d.date,name:d.name||'',cat:d.cat||'기타저축',amt:parseInt(d.amt)||0,memo:d.memo||''});
+        added++;
+      }
+    });
+    document.getElementById('import-saving-json').value='';
+    save();closeSavingModal();renderAll();
+    alert(added+'건 추가됐어요!'+(data.length-added>0?' ('+(data.length-added)+'건 중복 제외)':''));
   }catch(e){alert('JSON 형식을 확인해주세요');}
 }
 function openSavingModal(id){

@@ -10,7 +10,7 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;max-width:480px;margin:0 auto;padding-bottom:80px;min-height:100vh}
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--white);border-top:1px solid var(--border);display:flex;z-index:100;box-shadow:0 -4px 20px rgba(120,100,180,.10);padding:0 16px}
-.nbtn{flex:1;padding:5px 2px 7px;;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:12px;;color:var(--text3);font-weight:600;border:none;background:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
+.nbtn{flex:1;padding:5px 2px 7px;;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:10px;;color:var(--text3);font-weight:600;border:none;background:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;}
 .nbtn.on{color:var(--purple)}.nbtn .ni{font-size:25px}
 .pg{display:none;padding:0 14px 16px}.pg.on{display:block}
 .pghd{padding:16px 0 5px;display:flex;align-items:center;gap:8px}
@@ -1142,7 +1142,23 @@ function saveTx(){
 }
 function delTx(id){if(!confirm('삭제할까요?'))return;txList=txList.filter(t=>t.id!==id);save();renderAll();}
 function importJson(){
-  try{const data=JSON.parse(document.getElementById('import-json').value);data.forEach(d=>{const date=d.date||new Date().toISOString().slice(0,10),dd=new Date(date);txList.push({id:uid(),date,name:d.name||'',cat:d.cat||'기타',amt:parseInt(d.amt)||0,card:d.card||'',type:d.type||'지출',year:dd.getFullYear(),month:dd.getMonth()+1});});save();closeTxModal();renderAll();alert(data.length+'건 가져왔어요!');}catch(e){alert('JSON 형식을 확인해주세요');}
+  try{
+    const data=JSON.parse(document.getElementById('import-json').value);
+    let added=0;
+    data.forEach(d=>{
+      const date=d.date||new Date().toISOString().slice(0,10),dd=new Date(date);
+      // 중복 체크: 날짜+이름+금액 동일하면 건너뜀
+      const isDup=txList.some(t=>t.date===date&&t.name===d.name&&t.amt===parseInt(d.amt));
+      if(!isDup){
+        txList.push({id:uid(),date,name:d.name||'',cat:d.cat||'기타',amt:parseInt(d.amt)||0,card:d.card||'',type:d.type||'지출',year:dd.getFullYear(),month:dd.getMonth()+1});
+        added++;
+      }
+    });
+    // 저장 후 입력창 초기화
+    document.getElementById('import-json').value='';
+    save();closeTxModal();renderAll();
+    alert(added+'건 추가됐어요!'+(data.length-added>0?' ('+( data.length-added)+'건 중복 제외)':''));
+  }catch(e){alert('JSON 형식을 확인해주세요');}
 }
 function openSavingModal(id){
   document.getElementById('sv-edit-id').value=id||'';

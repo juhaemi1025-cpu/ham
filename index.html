@@ -821,7 +821,7 @@ function showPg(pg){
   document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('on'));
   const idx=['home','detail','income','saving','asset','compare','fixed','purpose'];
   const i=idx.indexOf(pg);if(i>=0)document.querySelectorAll('.nbtn')[i].classList.add('on');
-  document.getElementById('fab-btn').style.display=['detail','income'].includes(pg)?'flex':'none';
+  document.getElementById('fab-btn').style.display=['home','detail','income'].includes(pg)?'flex':'none';
   renderPage(pg);
 }
 function goBack(){showPg(prevPg==='home'?'home':prevPg);}

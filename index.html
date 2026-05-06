@@ -6,7 +6,7 @@
 <title>💰 우리 가계부</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f1fb;--white:#fff;--border:#ece8f8;--text:#3d3554;--text2:#7b72a0;--text3:#b0a8cc;--shadow:0 2px 16px rgba(120,100,180,.10);--purple:#9b7fe8;--mint:#2ea868;--pink:#e05070;--blue:#4070e0;--orange:#e07030;--gray:#e8e4f0;--gray-l:#f5f3fa;}
+:root{--bg:#f0f4ff;--white:#fff;--border:#dde5f5;--text:#2a3050;--text2:#7a84a8;--text3:#b8bdd8;--shadow:0 2px 14px rgba(80,100,180,.07);--purple:#6b8cde;--mint:#42c48a;--pink:#f07585;--blue:#5a8ae0;--orange:#f0a060;--gray:#e5eaf8;--gray-l:#f3f6ff;}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;max-width:480px;margin:0 auto;padding-bottom:80px;min-height:100vh}
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--white);border-top:1px solid var(--border);display:flex;z-index:100;box-shadow:0 -4px 20px rgba(120,100,180,.10);padding:0 20px}
@@ -37,7 +37,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 .wk-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}.wk-title{font-size:12px;font-weight:700;color:var(--purple)}.wk-remain{font-size:11px;font-weight:700}
 .wk-remain.ok{color:var(--mint)}.wk-remain.warn{color:var(--orange)}.wk-remain.over{color:var(--pink)}
 .wk-bar-bg{height:8px;background:var(--gray);border-radius:8px;overflow:hidden;margin-bottom:5px}
-.wk-bar-fill{height:100%;border-radius:8px}.wk-bar-fill.ok{background:linear-gradient(90deg,var(--mint),#60d890)}.wk-bar-fill.warn{background:linear-gradient(90deg,var(--orange),#f0a050)}.wk-bar-fill.over{background:linear-gradient(90deg,var(--pink),#f08090)}
+.wk-bar-fill{height:100%;border-radius:8px}.wk-bar-fill.ok{background:linear-gradient(90deg,#42c48a,#70daa8)}.wk-bar-fill.warn{background:linear-gradient(90deg,#f0a060,#f0c080)}.wk-bar-fill.over{background:linear-gradient(90deg,#f07585,#f09898)}
 .wk-info{font-size:9px;color:var(--text3)}
 .wgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .wcard{background:var(--white);border:1.5px solid var(--border);border-radius:13px;padding:11px}
@@ -71,7 +71,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 .cpill{flex-shrink:0;padding:4px 11px;border-radius:12px;border:1.5px solid var(--border);background:var(--white);color:var(--text2);font-size:10px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif}.cpill.on{color:#fff;border-color:transparent}
 .cmpbar{display:flex;align-items:center;gap:6px;margin-bottom:7px}
 .cmplbl{width:30px;font-size:10px;color:var(--text2);flex-shrink:0;font-weight:600}
-.cmptrack{flex:1;height:22px;background:var(--gray);border-radius:6px;overflow:visible;position:relative}
+.cmptrack{flex:1;height:16px;background:var(--gray);border-radius:6px;overflow:visible;position:relative}
 .cmpfill{height:100%;border-radius:6px;display:flex;align-items:center;position:relative;min-width:4px}
 .cmpftxt{font-size:9px;font-weight:700;color:#fff;white-space:nowrap;position:absolute;left:7px;top:50%;transform:translateY(-50%);pointer-events:none}
 .cmpftxt-out{font-size:9px;font-weight:700;white-space:nowrap;position:absolute;left:calc(100% + 4px);top:50%;transform:translateY(-50%);pointer-events:none}
@@ -84,7 +84,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 .tbl td:first-child{text-align:left;font-weight:600;color:var(--text);position:sticky;left:0;background:var(--white);z-index:1}
 .tbl tr:last-child td{border-bottom:none;font-weight:800;color:var(--purple)}
 .tbl .up{color:var(--pink);font-size:8px}.tbl .dn{color:var(--mint);font-size:8px}
-.asset-total{background:linear-gradient(135deg,#3d3554,#6040a0);border-radius:20px;padding:20px 16px;margin-bottom:10px;color:#fff;position:relative;overflow:hidden}
+.asset-total{background:linear-gradient(135deg,#4a6cc0,#7aaae8);border-radius:20px;padding:20px 16px;margin-bottom:10px;color:#fff;position:relative;overflow:hidden}
 .asset-total::after{content:'🏦';position:absolute;right:14px;top:14px;font-size:32px;opacity:.2}
 .asset-diff{font-size:13px;font-weight:700;margin-top:4px}.asset-diff.pos{color:#80ffb8}.asset-diff.neg{color:#ffb0b0}
 .chart-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -100,11 +100,11 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 .asset-sec-title{font-size:9px;font-weight:700;letter-spacing:1px;color:var(--text3);padding:6px 0 3px}
 .asset-cat-bar{display:flex;align-items:center;gap:8px;margin-bottom:6px}
 .asset-cat-lbl{width:62px;font-size:9px;color:var(--text2);font-weight:600;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.asset-cat-track{flex:1;height:18px;background:var(--gray);border-radius:6px;overflow:visible;position:relative}
+.asset-cat-track{flex:1;height:13px;background:var(--gray);border-radius:6px;overflow:visible;position:relative}
 .asset-cat-fill{height:100%;border-radius:6px;position:relative;display:flex;align-items:center;min-width:4px}
 .asset-cat-txt{font-size:9px;font-weight:700;color:#fff;white-space:nowrap;padding:0 6px}
 .asset-cat-val{width:56px;font-size:9px;font-weight:700;text-align:right;flex-shrink:0;color:var(--text)}
-.purpose-hero{background:linear-gradient(135deg,#9b7fe8,#6040a0);border-radius:20px;padding:18px 16px;margin-bottom:10px;color:#fff;position:relative;overflow:hidden}
+.purpose-hero{background:linear-gradient(135deg,#6a8ee0,#4a6cc0);border-radius:20px;padding:18px 16px;margin-bottom:10px;color:#fff;position:relative;overflow:hidden}
 .purpose-hero::after{content:'💰';position:absolute;right:14px;top:14px;font-size:32px;opacity:.2}
 .pu-bal-lbl{font-size:10px;opacity:.7;letter-spacing:1.5px;margin-bottom:2px;font-weight:600}.pu-bal{font-size:28px;font-weight:900;letter-spacing:-1px}
 .pu-chips{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
@@ -115,7 +115,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 .pu-info{flex:1;min-width:0}.pu-name{font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pu-date{font-size:9px;color:var(--text3)}
 .pu-right{text-align:right;flex-shrink:0}.pu-amt{font-size:12px;font-weight:700}.pu-amt.in{color:var(--mint)}.pu-amt.out{color:var(--pink)}.pu-balance{font-size:9px;color:var(--text3)}
 .saving-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}.saving-item:last-child{border-bottom:none}
-.saving-badge{font-size:9px;font-weight:700;border-radius:6px;padding:2px 6px;background:#e8f0ff;color:var(--blue)}.saving-badge.stock{background:#fff0e8;color:var(--orange)}.saving-badge.purpose{background:#f0e8ff;color:var(--purple)}
+.saving-badge{font-size:9px;font-weight:700;border-radius:6px;padding:2px 6px;background:#e8f0ff;color:var(--blue)}.saving-badge.stock{background:#fff0e8;color:var(--orange)}.saving-badge.purpose{background:#e8f0ff;color:var(--blue)}
 .fxitem{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}.fxitem:last-child{border-bottom:none}
 .fxl{display:flex;align-items:center;gap:6px}.fxdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}.fxname{font-size:11px;font-weight:600}.fxsub{font-size:9px;color:var(--text3)}
 .fxbtns{display:flex;gap:4px;margin-top:2px}.fxbtn{font-size:9px;padding:2px 7px;border-radius:6px;border:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:600}
@@ -171,7 +171,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
   <div class="mrow"><label>날짜</label><input type="date" id="tx-date"></div>
   <div class="mrow"><label>항목명</label><input type="text" id="tx-name"></div>
   <div class="mrow"><label>카테고리</label><select id="tx-cat"></select></div>
-  <div class="mrow"><label>금액 (원)</label><input type="number" id="tx-amt"></div>
+  <div class="mrow"><label>금액 (원)</label><input type="text" inputmode="numeric" id="tx-amt" oninput="this.value=fmtNum(this.value)"></div>
   <div class="mrow"><label>카드/은행</label><select id="tx-card" style="width:100%;padding:9px 11px;border:1.5px solid var(--border);border-radius:10px;font-size:12px;font-family:'Noto Sans KR',sans-serif;color:var(--text);background:var(--white);outline:none"><option value="">선택 안함</option><option>영빈 하나</option><option>영빈 삼성</option><option>영빈 청주</option><option>해미 삼성</option><option>해미 청주</option><option>토스뱅크</option><option>카카오페이</option><option>계좌이체</option><option>현금</option></select></div>
   <div class="mbtns"><button class="mbtn cancel" onclick="closeTxModal()">취소</button><button class="mbtn ok" onclick="saveTx()">저장</button></div>
   <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:11px">
@@ -185,7 +185,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
   <div class="mrow"><label>날짜</label><input type="date" id="sv-date"></div>
   <div class="mrow"><label>항목명</label><input type="text" id="sv-name"></div>
   <div class="mrow"><label>종류</label><select id="sv-cat"><option value="목적 통장">목적 통장</option><option value="주식">주식/투자</option><option value="비상금">비상금</option><option value="기타저축">기타저축</option></select></div>
-  <div class="mrow"><label>금액 (원)</label><input type="number" id="sv-amt"></div>
+  <div class="mrow"><label>금액 (원)</label><input type="text" inputmode="numeric" id="sv-amt" oninput="this.value=fmtNum(this.value)"></div>
   <div class="mrow"><label>메모</label><input type="text" id="sv-memo"></div>
   <div class="mbtns"><button class="mbtn cancel" onclick="closeSavingModal()">취소</button><button class="mbtn ok" onclick="saveSaving()">저장</button></div>
   <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:11px">
@@ -197,7 +197,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 <div class="modal-bg" id="modal-fixed"><div class="modal">
   <h3 id="modal-fixed-title">📌 고정비</h3><input type="hidden" id="fx-edit-id">
   <div class="mrow"><label>항목명</label><input type="text" id="fx-name"></div>
-  <div class="mrow"><label>금액 (원)</label><input type="number" id="fx-amt"></div>
+  <div class="mrow"><label>금액 (원)</label><input type="text" inputmode="numeric" id="fx-amt" oninput="this.value=fmtNum(this.value)"></div>
   <div class="mrow"><label>카테고리</label><select id="fx-cat"><option>주거</option><option>통신</option><option>저축</option><option>자녀</option><option>보험</option><option>용돈</option><option>대출 상환</option></select></div>
   <div class="mrow"><label>은행/카드</label><input type="text" id="fx-bank"></div>
   <div class="mrow"><label>납부일</label><input type="text" id="fx-due"></div>
@@ -210,7 +210,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
   <div class="mrow"><label>날짜</label><input type="date" id="pu-date"></div>
   <div class="mrow"><label>항목명</label><input type="text" id="pu-name"></div>
   <div class="mrow"><label>유형</label><select id="pu-type"><option value="저축">저축(입금)</option><option value="지출">지출(출금)</option></select></div>
-  <div class="mrow"><label>금액 (원)</label><input type="number" id="pu-amt"></div>
+  <div class="mrow"><label>금액 (원)</label><input type="text" inputmode="numeric" id="pu-amt" oninput="this.value=fmtNum(this.value)"></div>
   <div class="mrow"><label>메모</label><input type="text" id="pu-memo"></div>
   <div class="mbtns"><button class="mbtn cancel" onclick="closePurposeModal()">취소</button><button class="mbtn ok" onclick="savePurpose()">저장</button></div>
 </div></div>
@@ -228,7 +228,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
       </select>
     </div>
     <div style="display:flex;gap:6px">
-      <input type="number" id="as-new-amt" placeholder="금액 (대출은 음수)" style="flex:1;padding:7px 9px;border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-family:'Noto Sans KR',sans-serif;outline:none">
+      <input type="text" inputmode="numeric" id="as-new-amt" oninput="this.value=fmtNum(this.value)" placeholder="금액 (대출은 음수)" style="flex:1;padding:7px 9px;border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-family:'Noto Sans KR',sans-serif;outline:none">
       <button onclick="addAssetItem()" style="padding:7px 12px;background:var(--purple);color:#fff;border:none;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">추가</button>
     </div>
   </div>
@@ -635,13 +635,100 @@ const DEFAULT_TX=[
   {id:'t1778024709699473g',date:'2026-05-05',name:'제줏간 오창2산단점',cat:'식비',amt:63400,card:'영빈 하나',type:'지출',year:2026,month:5},
   {id:'t1778024709699iqm1',date:'2026-05-05',name:'이마트 에브리데이 오창',cat:'생활용품',amt:63500,card:'영빈 하나',type:'지출',year:2026,month:5},
   {id:'t177802470969956e2',date:'2026-05-05',name:'눈썹 염색',cat:'꾸밈비',amt:22800,card:'영빈 하나',type:'지출',year:2026,month:5},
+  {id:'t1778062856223t1bj',date:'2026-05-30',name:'관리비',cat:'고정 지출',amt:250000,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856223djy2',date:'2026-05-26',name:'가스비',cat:'고정 지출',amt:50000,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t17780628562233ene',date:'2026-05-15',name:'인터넷비',cat:'고정 지출',amt:18020,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856224rcad',date:'2026-05-15',name:'해미 핸드폰',cat:'고정 지출',amt:25030,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856224gc8n',date:'2026-05-01',name:'유찬 특성활동비',cat:'고정 지출',amt:80000,card:'아이사랑',type:'지출',year:2026,month:5},
+  {id:'t1778062856224leu9',date:'2026-05-01',name:'유민 버스비',cat:'고정 지출',amt:30000,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t17780628562248rex',date:'2026-05-01',name:'유민 특성활동비',cat:'고정 지출',amt:83500,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856224o9w6',date:'2026-05-15',name:'해미 운전자보험',cat:'고정 지출',amt:19950,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856224aas9',date:'2026-05-01',name:'해미 실비보험',cat:'고정 지출',amt:13419,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856224f7lh',date:'2026-05-01',name:'해미 보험',cat:'고정 지출',amt:99860,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856224i3n4',date:'2026-05-01',name:'화재보험',cat:'고정 지출',amt:9660,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856224emob',date:'2026-05-01',name:'유찬 보험',cat:'고정 지출',amt:75680,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856224xa13',date:'2026-05-01',name:'영빈 운전자보험',cat:'고정 지출',amt:18290,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856225owgm',date:'2026-05-01',name:'유민 보험',cat:'고정 지출',amt:72265,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856225ywzb',date:'2026-05-01',name:'영빈 용돈',cat:'고정 지출',amt:400000,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t177806285622579qt',date:'2026-05-01',name:'해미 용돈',cat:'고정 지출',amt:200000,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t17780628562250xaj',date:'2026-05-01',name:'어머님 상환 이자',cat:'고정 지출',amt:50000,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062856225xgty',date:'2026-05-01',name:'주담대',cat:'고정 지출',amt:600000,card:'토스뱅크',type:'지출',year:2026,month:5},
+  {id:'t1778062888392gbhn',date:'2026-04-30',name:'관리비',cat:'고정 지출',amt:250000,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888392814g',date:'2026-04-26',name:'가스비',cat:'고정 지출',amt:50000,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888392eudw',date:'2026-04-15',name:'인터넷비',cat:'고정 지출',amt:18020,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t17780628883920tc6',date:'2026-04-15',name:'해미 핸드폰',cat:'고정 지출',amt:25030,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t17780628883924z6u',date:'2026-04-01',name:'유찬 특성활동비',cat:'고정 지출',amt:80000,card:'아이사랑',type:'지출',year:2026,month:4},
+  {id:'t1778062888393p5qv',date:'2026-04-01',name:'유민 버스비',cat:'고정 지출',amt:30000,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t17780628883935qrk',date:'2026-04-01',name:'유민 특성활동비',cat:'고정 지출',amt:83500,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393bmde',date:'2026-04-15',name:'해미 운전자보험',cat:'고정 지출',amt:19950,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393bmfz',date:'2026-04-01',name:'해미 실비보험',cat:'고정 지출',amt:13419,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393q0gc',date:'2026-04-01',name:'해미 보험',cat:'고정 지출',amt:99860,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393n6nq',date:'2026-04-01',name:'화재보험',cat:'고정 지출',amt:9660,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393ga0d',date:'2026-04-01',name:'유찬 보험',cat:'고정 지출',amt:75680,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393u40q',date:'2026-04-01',name:'영빈 운전자보험',cat:'고정 지출',amt:18290,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393mmgo',date:'2026-04-01',name:'유민 보험',cat:'고정 지출',amt:72265,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393vydf',date:'2026-04-01',name:'영빈 용돈',cat:'고정 지출',amt:400000,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393ed2y',date:'2026-04-01',name:'해미 용돈',cat:'고정 지출',amt:200000,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393cb7c',date:'2026-04-01',name:'어머님 상환 이자',cat:'고정 지출',amt:50000,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062888393fb8h',date:'2026-04-01',name:'주담대',cat:'고정 지출',amt:600000,card:'토스뱅크',type:'지출',year:2026,month:4},
+  {id:'t1778062913055geqo',date:'2026-03-30',name:'관리비',cat:'고정 지출',amt:250000,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t177806291305575px',date:'2026-03-26',name:'가스비',cat:'고정 지출',amt:50000,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913055pa0j',date:'2026-03-15',name:'인터넷비',cat:'고정 지출',amt:18020,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913055649p',date:'2026-03-15',name:'해미 핸드폰',cat:'고정 지출',amt:25030,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913055l3zq',date:'2026-03-01',name:'유찬 특성활동비',cat:'고정 지출',amt:80000,card:'아이사랑',type:'지출',year:2026,month:3},
+  {id:'t177806291305506zs',date:'2026-03-01',name:'유민 버스비',cat:'고정 지출',amt:30000,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913055efmh',date:'2026-03-01',name:'유민 특성활동비',cat:'고정 지출',amt:83500,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t17780629130551d51',date:'2026-03-15',name:'해미 운전자보험',cat:'고정 지출',amt:19950,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913056coyg',date:'2026-03-01',name:'해미 실비보험',cat:'고정 지출',amt:13419,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913056giuu',date:'2026-03-01',name:'해미 보험',cat:'고정 지출',amt:99860,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913056wi4a',date:'2026-03-01',name:'화재보험',cat:'고정 지출',amt:9660,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t17780629130560f66',date:'2026-03-01',name:'유찬 보험',cat:'고정 지출',amt:75680,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913056ske6',date:'2026-03-01',name:'영빈 운전자보험',cat:'고정 지출',amt:18290,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913056q3qg',date:'2026-03-01',name:'유민 보험',cat:'고정 지출',amt:72265,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913056gq7l',date:'2026-03-01',name:'영빈 용돈',cat:'고정 지출',amt:400000,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913056vgup',date:'2026-03-01',name:'해미 용돈',cat:'고정 지출',amt:200000,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062913056x2jq',date:'2026-03-01',name:'어머님 상환 이자',cat:'고정 지출',amt:50000,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t17780629130568b8c',date:'2026-03-01',name:'주담대',cat:'고정 지출',amt:600000,card:'토스뱅크',type:'지출',year:2026,month:3},
+  {id:'t1778062920507p9g9',date:'2026-02-28',name:'관리비',cat:'고정 지출',amt:250000,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t1778062920507s2hp',date:'2026-02-26',name:'가스비',cat:'고정 지출',amt:50000,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t1778062920507tlsm',date:'2026-02-15',name:'인터넷비',cat:'고정 지출',amt:18020,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t1778062920507q6vh',date:'2026-02-15',name:'해미 핸드폰',cat:'고정 지출',amt:25030,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t177806292050751tb',date:'2026-02-01',name:'유찬 특성활동비',cat:'고정 지출',amt:80000,card:'아이사랑',type:'지출',year:2026,month:2},
+  {id:'t1778062920507wozj',date:'2026-02-01',name:'유민 버스비',cat:'고정 지출',amt:30000,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t1778062920507rd5v',date:'2026-02-01',name:'유민 특성활동비',cat:'고정 지출',amt:83500,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t1778062920507zp7n',date:'2026-02-15',name:'해미 운전자보험',cat:'고정 지출',amt:19950,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t1778062920507x30e',date:'2026-02-01',name:'해미 실비보험',cat:'고정 지출',amt:13419,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t17780629205075odz',date:'2026-02-01',name:'해미 보험',cat:'고정 지출',amt:99860,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t17780629205072wj7',date:'2026-02-01',name:'화재보험',cat:'고정 지출',amt:9660,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t17780629205070vje',date:'2026-02-01',name:'유찬 보험',cat:'고정 지출',amt:75680,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t177806292050785j0',date:'2026-02-01',name:'영빈 운전자보험',cat:'고정 지출',amt:18290,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t1778062920507my4h',date:'2026-02-01',name:'유민 보험',cat:'고정 지출',amt:72265,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t1778062920507ymx9',date:'2026-02-01',name:'영빈 용돈',cat:'고정 지출',amt:400000,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t1778062920507u0tf',date:'2026-02-01',name:'해미 용돈',cat:'고정 지출',amt:200000,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t177806292050750cy',date:'2026-02-01',name:'어머님 상환 이자',cat:'고정 지출',amt:50000,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t17780629205080upi',date:'2026-02-01',name:'주담대',cat:'고정 지출',amt:600000,card:'토스뱅크',type:'지출',year:2026,month:2},
+  {id:'t17780629261833uup',date:'2026-01-30',name:'관리비',cat:'고정 지출',amt:250000,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778062926183my6c',date:'2026-01-26',name:'가스비',cat:'고정 지출',amt:50000,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778062926183u1jd',date:'2026-01-15',name:'인터넷비',cat:'고정 지출',amt:18020,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t177806292618373c8',date:'2026-01-15',name:'해미 핸드폰',cat:'고정 지출',amt:25030,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778062926183z4bf',date:'2026-01-01',name:'유찬 특성활동비',cat:'고정 지출',amt:80000,card:'아이사랑',type:'지출',year:2026,month:1},
+  {id:'t1778062926183zc9e',date:'2026-01-01',name:'유민 버스비',cat:'고정 지출',amt:30000,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778062926183ac9t',date:'2026-01-01',name:'유민 특성활동비',cat:'고정 지출',amt:83500,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t177806292618370pr',date:'2026-01-15',name:'해미 운전자보험',cat:'고정 지출',amt:19950,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778062926183rbu8',date:'2026-01-01',name:'해미 실비보험',cat:'고정 지출',amt:13419,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778062926183al0n',date:'2026-01-01',name:'해미 보험',cat:'고정 지출',amt:99860,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t177806292618319w5',date:'2026-01-01',name:'화재보험',cat:'고정 지출',amt:9660,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778062926183465f',date:'2026-01-01',name:'유찬 보험',cat:'고정 지출',amt:75680,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t17780629261839bhx',date:'2026-01-01',name:'영빈 운전자보험',cat:'고정 지출',amt:18290,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t17780629261834d8g',date:'2026-01-01',name:'유민 보험',cat:'고정 지출',amt:72265,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778062926183ftbs',date:'2026-01-01',name:'영빈 용돈',cat:'고정 지출',amt:400000,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778062926183zfkz',date:'2026-01-01',name:'해미 용돈',cat:'고정 지출',amt:200000,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t177806292618345u5',date:'2026-01-01',name:'어머님 상환 이자',cat:'고정 지출',amt:50000,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778062926183kd2k',date:'2026-01-01',name:'주담대',cat:'고정 지출',amt:600000,card:'토스뱅크',type:'지출',year:2026,month:1},
+  {id:'t1778075663375eh20',date:'2026-04-23',name:'아케마 주식',cat:'기타 수입',amt:10446627,card:'',type:'수입',year:2026,month:4},
 ];
 
 const DEFAULT_SAVING=[
-  {id:'sv1',date:'2026-01-09',name:'목적통장 입금',cat:'목적 통장',amt:1400000,memo:''},
-  {id:'sv2',date:'2026-01-15',name:'목적통장 입금',cat:'목적 통장',amt:500000,memo:''},
-  {id:'sv3',date:'2026-01-16',name:'목적통장 입금',cat:'목적 통장',amt:7000000,memo:'성과급'},
-  {id:'sv4',date:'2026-02-01',name:'1월 월급 입금',cat:'목적 통장',amt:1000000,memo:''},
   {id:'sv5',date:'2026-03-01',name:'연말정산 입금',cat:'목적 통장',amt:3000000,memo:''},
   {id:'sv6',date:'2026-04-20',name:'박영빈 비트코인',cat:'주식',amt:1000000,memo:''},
   {id:'sv7',date:'2026-04-23',name:'박영빈 ISA',cat:'주식',amt:1500000,memo:''},
@@ -653,24 +740,35 @@ const DEFAULT_SAVING=[
   {id:'t1777957937529n3xg',date:'2026-04-01',name:'현금 저축',cat:'비상금',amt:300000,memo:''},
   {id:'t1777957937529r9j2',date:'2026-04-01',name:'해미 주식',cat:'주식/투자',amt:400000,memo:''},
   {id:'t1777957937529t1jw',date:'2026-04-01',name:'영빈 주식',cat:'주식/투자',amt:300000,memo:''},
-  {id:'t1777957937529lxyq',date:'2026-04-01',name:'영빈 청약',cat:'목적 통장',amt:20000,memo:''},
   {id:'t1777957937529zrc0',date:'2026-04-01',name:'어머님 상환',cat:'기타저축',amt:350000,memo:''},
-  {id:'t1777957937529zack',date:'2026-04-01',name:'해미 청약',cat:'목적 통장',amt:20000,memo:''},
   {id:'t1777957937529dddm',date:'2026-04-01',name:'어머님 대출 상환',cat:'기타저축',amt:600000,memo:''},
-  {id:'t177795430471693l6',date:'2026-05-01',name:'현금 저축',cat:'비상금',amt:300000,memo:''},
   {id:'t177795430471719ie',date:'2026-05-01',name:'해미 주식',cat:'주식/투자',amt:400000,memo:''},
   {id:'t17779543047171bdg',date:'2026-05-01',name:'영빈 주식',cat:'주식/투자',amt:400000,memo:''},
-  {id:'t1777954304717a2qv',date:'2026-05-01',name:'영빈 청약',cat:'목적 통장',amt:20000,memo:''},
   {id:'t1777954304717kvjf',date:'2026-05-01',name:'어머님 상환',cat:'기타저축',amt:350000,memo:''},
-  {id:'t1777954304717lyje',date:'2026-05-01',name:'해미 청약',cat:'목적 통장',amt:20000,memo:''},
   {id:'t1777954304717pyf8',date:'2026-05-01',name:'어머님 대출 상환',cat:'기타저축',amt:600000,memo:''},
   {id:'t17779580542426roo',date:'2026-05-01',name:'영빈 청약',cat:'기타저축',amt:20000,memo:''},
   {id:'t17779580695364zh7',date:'2026-05-01',name:'해미 청약',cat:'기타저축',amt:20000,memo:''},
-  {id:'t1777957885745m85w',date:'2026-05-15',name:'해미 주식',cat:'주식/투자',amt:400000,memo:''},
-  {id:'t17779578857451x98',date:'2026-05-15',name:'영빈 주식',cat:'주식/투자',amt:400000,memo:''},
-  {id:'t1777957885745uewz',date:'2026-05-15',name:'어머님 상환',cat:'기타저축',amt:350000,memo:''},
-  {id:'t1777957885745u3u9',date:'2026-05-15',name:'어머님 대출 상환',cat:'기타저축',amt:600000,memo:''},
-  {id:'t1777993891961m86s',date:'2026-05-05',name:'현금 저축',cat:'목적 통장',amt:300000,memo:''},
+  {id:'t1777993891961m86s',date:'2026-05-01',name:'현금 저축',cat:'목적 통장',amt:300000,memo:''},
+  {id:'t1778062888392ald7',date:'2026-04-01',name:'영빈 주식',cat:'기타저축',amt:400000,memo:'고정비 자동추가'},
+  {id:'t1778062913055yp6j',date:'2026-03-01',name:'현금 저축',cat:'기타저축',amt:300000,memo:'고정비 자동추가'},
+  {id:'t1778062913055xgry',date:'2026-03-01',name:'해미 주식',cat:'기타저축',amt:400000,memo:'고정비 자동추가'},
+  {id:'t1778062913055itrg',date:'2026-03-01',name:'영빈 주식',cat:'기타저축',amt:300000,memo:'고정비 자동추가'},
+  {id:'t1778062913055wxyq',date:'2026-03-01',name:'영빈 청약',cat:'기타저축',amt:20000,memo:'고정비 자동추가'},
+  {id:'t17780629130556nb5',date:'2026-03-01',name:'어머님 상환',cat:'기타저축',amt:350000,memo:'고정비 자동추가'},
+  {id:'t17780629130553amb',date:'2026-03-01',name:'해미 청약',cat:'기타저축',amt:20000,memo:'고정비 자동추가'},
+  {id:'t1778062913055evs3',date:'2026-03-01',name:'어머님 대출 상환',cat:'기타저축',amt:600000,memo:'고정비 자동추가'},
+  {id:'t1778062920507haxf',date:'2026-02-01',name:'현금 저축',cat:'기타저축',amt:300000,memo:'고정비 자동추가'},
+  {id:'t1778062920507u20i',date:'2026-02-01',name:'해미 주식',cat:'기타저축',amt:400000,memo:'고정비 자동추가'},
+  {id:'t1778062920507fznh',date:'2026-02-01',name:'영빈 청약',cat:'기타저축',amt:20000,memo:'고정비 자동추가'},
+  {id:'t17780629205075ld2',date:'2026-02-01',name:'어머님 상환',cat:'기타저축',amt:350000,memo:'고정비 자동추가'},
+  {id:'t1778062920507fjo7',date:'2026-02-01',name:'해미 청약',cat:'기타저축',amt:20000,memo:'고정비 자동추가'},
+  {id:'t1778062920507gpid',date:'2026-02-01',name:'어머님 대출 상환',cat:'기타저축',amt:600000,memo:'고정비 자동추가'},
+  {id:'t1778062926183122g',date:'2026-01-01',name:'영빈 청약',cat:'기타저축',amt:20000,memo:'고정비 자동추가'},
+  {id:'t1778062926183wtyw',date:'2026-01-01',name:'어머님 상환',cat:'기타저축',amt:350000,memo:'고정비 자동추가'},
+  {id:'t1778062926183gjj4',date:'2026-01-01',name:'해미 청약',cat:'기타저축',amt:20000,memo:'고정비 자동추가'},
+  {id:'t1778062926183igq5',date:'2026-01-01',name:'어머님 대출 상환',cat:'기타저축',amt:600000,memo:'고정비 자동추가'},
+  {id:'t1778075963776x2nv',date:'2026-01-16',name:'연말 정산 저축',cat:'목적 통장',amt:7000000,memo:''},
+  {id:'t17780760089984qma',date:'2026-01-14',name:'해미 상여 저축',cat:'목적 통장',amt:1400000,memo:''},
 ];
 
 const DEFAULT_FIXED=[
@@ -706,10 +804,8 @@ const DEFAULT_PURPOSE=[
   {id:'p2',date:'2026-01-03',name:'선아 용돈',type:'지출',amt:200000,memo:''},
   {id:'p3',date:'2026-01-04',name:'맥북 구매',type:'지출',amt:620000,memo:''},
   {id:'p4',date:'2026-01-04',name:'나영이 결혼',type:'지출',amt:150000,memo:'경조사'},
-  {id:'p5',date:'2026-01-09',name:'해미 상여금 저축',type:'저축',amt:1400000,memo:'상여금'},
   {id:'p6',date:'2026-01-15',name:'영빈 주식',type:'지출',amt:500000,memo:'주식 투자'},
   {id:'p7',date:'2026-01-16',name:'해미 ISA',type:'지출',amt:2000000,memo:'ISA 납입'},
-  {id:'p8',date:'2026-01-16',name:'영빈 성과급',type:'저축',amt:7000000,memo:'성과급 저축'},
   {id:'p9',date:'2026-01-18',name:'자동차세(영빈)',type:'지출',amt:334100,memo:''},
   {id:'p10',date:'2026-01-18',name:'자동차세(해미)',type:'지출',amt:121210,memo:''},
   {id:'p11',date:'2026-01-23',name:'영빈 자동차보험',type:'지출',amt:520900,memo:''},
@@ -717,16 +813,15 @@ const DEFAULT_PURPOSE=[
   {id:'p13',date:'2026-01-28',name:'영빈 자동차 대출 상환',type:'지출',amt:5000000,memo:'완납'},
   {id:'p14',date:'2026-01-30',name:'영우 조의금',type:'지출',amt:200000,memo:'경조사'},
   {id:'p15',date:'2026-02-07',name:'생활비 대출',type:'지출',amt:240000,memo:''},
-  {id:'p16',date:'2026-02-20',name:'연말정산 환급금',type:'저축',amt:3000000,memo:''},
   {id:'p17',date:'2026-02-22',name:'여행비(환전)',type:'지출',amt:1500000,memo:'일본 여행'},
   {id:'p18',date:'2026-03-06',name:'여행비 추가',type:'지출',amt:500000,memo:''},
   {id:'p19',date:'2026-03-31',name:'아케마 상환',type:'지출',amt:2622982,memo:'주식 상환'},
   {id:'p20',date:'2026-04-03',name:'카드값 상환',type:'지출',amt:800000,memo:''},
-  {id:'p21',date:'2026-04-17',name:'4월 저축',type:'저축',amt:7327516,memo:'월급 저축'},
   {id:'p22',date:'2026-04-20',name:'대출금 원금 상환',type:'지출',amt:1427516,memo:''},
   {id:'p23',date:'2026-04-23',name:'해미 운전자보험',type:'지출',amt:561010,memo:'연납'},
   {id:'p24',date:'2026-04-23',name:'결혼',type:'지출',amt:200000,memo:'경조사'},
   {id:'p25',date:'2026-04-24',name:'꾸밈비 사용',type:'지출',amt:870000,memo:''},
+  {id:'t177807612264709mq',date:'2026-01-01',name:'누적 돈',type:'저축',amt:2690017,memo:''},
 ];
 
 const DEFAULT_ASSET_SNAPSHOTS={
@@ -742,7 +837,7 @@ let curYear=2026,curMonth=5,curPg='home',prevPg='home',txType='지출',cmpSelCat
 let assetModalItems={};
 
 function load(){
-  const DATA_VERSION='v20260506'; // 이 값을 바꾸면 localStorage 초기화
+  const DATA_VERSION='v20260507d'; // 이 값을 바꾸면 localStorage 초기화
   const savedVer=localStorage.getItem('dataVersion');
   if(savedVer!==DATA_VERSION){
     // 버전이 다르면 새 DEFAULT 데이터로 강제 교체
@@ -780,17 +875,46 @@ function save(){
   localStorage.setItem('fx',JSON.stringify(fixedList));
   localStorage.setItem('as',JSON.stringify(assetSnapshots));
 }
+function fmtNum(v){v=String(v||'').replace(/[^0-9]/g,'');return v.replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+function parseFmt(v){return parseInt(String(v||'0').replace(/,/g,''))||0;}
 function fmtS(n){const a=Math.abs(n);if(a>=100000000)return(n<0?'-':'')+(a/100000000).toFixed(1)+'억';return n.toLocaleString()+'원';}
-// 막대그래프 렌더 헬퍼 - 텍스트가 바 안에 들어가면 흰색, 밖이면 색상 텍스트
+// 막대그래프 렌더 헬퍼 - diff는 바 아래 별도 줄로 표시 (옆 텍스트 줄바꿈 방지)
 function cmpBarHTML(lbl,pct,bg,txt,diffHtml,lblStyle){
-  const w=Math.max(pct,pct>0?2:0);
-  const shortBar=w<30;
-  return`<div class="cmpbar"><div class="cmplbl" style="${lblStyle||''}">${lbl}</div><div class="cmptrack" style="height:22px"><div class="cmpfill" style="width:${w}%;background:${bg};height:100%">${!shortBar?`<span class="cmpftxt">${txt}</span>`:''}</div>${shortBar&&txt?`<span style="font-size:9px;font-weight:700;color:var(--text2);white-space:nowrap;position:absolute;left:${w+2}%;top:50%;transform:translateY(-50%)">${txt}</span>`:''}</div>${diffHtml||''}</div>`;
-}
-function assetBarHTML(lbl,pct,bg,txt,rightTxt){
-  const w=Math.max(pct,pct>0?2:0);
+  const w=Math.max(pct,pct>0?1:0);
   const shortBar=w<28;
-  return`<div class="asset-cat-bar"><div class="asset-cat-lbl">${lbl}</div><div class="asset-cat-track"><div class="asset-cat-fill" style="width:${w}%;background:${bg};height:100%">${!shortBar?`<span class="asset-cat-txt">${txt}</span>`:''}</div>${shortBar&&txt?`<span style="font-size:9px;font-weight:700;color:var(--text2);white-space:nowrap;padding-left:4px">${txt}</span>`:''}</div><div class="asset-cat-val">${rightTxt||''}</div></div>`;
+  // diffHtml에서 실제 텍스트 내용과 색상 추출
+  const diffMatch=diffHtml?(diffHtml.match(/class="cmpdiff ([^"]*)">(.*?)<\/div>/))||null:null;
+  const diffColor=diffMatch?diffMatch[1]==='up'?'#e8637a':'#3dbf7a':'';
+  const diffTxt=diffMatch?diffMatch[2]:'';
+  return`<div style="margin-bottom:9px">
+    <div style="display:flex;align-items:center;gap:5px">
+      <div class="cmplbl" style="${lblStyle||''}white-space:nowrap">${lbl}</div>
+      <div style="flex:1;height:16px;background:var(--gray);border-radius:5px;overflow:visible;position:relative">
+        <div style="width:${Math.max(w,0.5)}%;height:100%;border-radius:5px;background:${bg}">
+          ${!shortBar?`<span style="font-size:9px;font-weight:700;color:#fff;position:absolute;left:7px;top:50%;transform:translateY(-50%);white-space:nowrap">${txt}</span>`:''}
+        </div>
+        ${shortBar&&txt?`<span style="font-size:9px;font-weight:700;color:var(--text2);position:absolute;left:calc(${Math.max(w,0.5)}% + 4px);top:50%;transform:translateY(-50%);white-space:nowrap">${txt}</span>`:''}
+      </div>
+    </div>
+    ${diffTxt?`<div style="text-align:right;font-size:9px;font-weight:700;color:${diffColor};white-space:nowrap;margin-top:1px">${diffTxt}</div>`:''}
+  </div>`;
+}
+// 자산 막대 - diff를 바 아래 별도 줄에 표시
+function assetBarHTML(lbl,pct,bg,txt,rightTxt){
+  const w=Math.max(pct,pct>0?1:0);
+  const shortBar=w<35;
+  return`<div style="margin-bottom:8px">
+    <div class="asset-cat-bar" style="margin-bottom:2px">
+      <div class="asset-cat-lbl">${lbl}</div>
+      <div class="asset-cat-track" style="overflow:visible;position:relative">
+        <div class="asset-cat-fill" style="width:${Math.max(w,0.5)}%;background:${bg};height:100%">
+          ${!shortBar?`<span class="asset-cat-txt">${txt}</span>`:''}
+        </div>
+        ${shortBar&&txt?`<span style="font-size:8px;font-weight:700;color:var(--text2);white-space:nowrap;margin-left:4px;position:absolute;left:${Math.max(w,0.5)}%;top:50%;transform:translateY(-50%)">${txt}</span>`:''}
+      </div>
+      <div class="asset-cat-val">${rightTxt||''}</div>
+    </div>
+  </div>`;
 }
 function uid(){return 't'+Date.now()+Math.random().toString(36).slice(2,6);}
 function getTx(y,m,type){return txList.filter(t=>t.year===y&&t.month===m&&t.type===type);}
@@ -917,31 +1041,31 @@ function renderHome(){
 
   document.getElementById('home-body').innerHTML=`
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:10px" class="fade">
-    <div class="ies-card income" style="padding:10px 6px;text-align:center">
-      <div style="font-size:10px;font-weight:700;color:var(--mint);margin-bottom:4px">💵 수입</div>
+    <div style="background:#edfff6;border:1.5px solid #b3ead0;border-radius:14px;padding:10px 5px;text-align:center">
+      <div style="font-size:9px;font-weight:700;color:#333;margin-bottom:4px">💵 수입</div>
       <div style="font-size:11px;font-weight:900;color:var(--mint);line-height:1.2">${fmtS(totalInc)}</div>
-      <div style="font-size:9px;color:var(--mint);font-weight:700;margin-top:3px">기준</div>
+      <div style="font-size:9px;color:#999;margin-top:3px">기준</div>
     </div>
-    <div class="ies-card expense" style="padding:10px 6px;text-align:center">
-      <div style="font-size:10px;font-weight:700;color:var(--pink);margin-bottom:4px">💸 변동</div>
+    <div style="background:#fff0f4;border:1.5px solid #ffc8d0;border-radius:14px;padding:10px 5px;text-align:center">
+      <div style="font-size:9px;font-weight:700;color:#333;margin-bottom:4px">💸 변동</div>
       <div style="font-size:11px;font-weight:900;color:var(--pink);line-height:1.2">${fmtS(varExp)}</div>
-      <div style="font-size:9px;color:var(--pink);font-weight:700;margin-top:3px">${varExpPct}%</div>
-      <div style="font-size:8px;color:var(--text3);margin-top:1px">이번주 ${fmtS(weekExp)}</div>
+      <div style="font-size:9px;color:#999;margin-top:3px">${varExpPct}%</div>
+      <div style="font-size:8px;color:#bbb;margin-top:1px">이번주 ${fmtS(weekExp)}</div>
     </div>
-    <div class="ies-card" style="background:#e8f8ff;border-color:#b8e0f0;padding:10px 6px;text-align:center">
-      <div style="font-size:10px;font-weight:700;color:#2090c0;margin-bottom:4px">⚙️ 고정</div>
-      <div style="font-size:11px;font-weight:900;color:#2090c0;line-height:1.2">${fmtS(fixedExp)}</div>
-      <div style="font-size:9px;color:#2090c0;font-weight:700;margin-top:3px">${fixedExpPct}%</div>
+    <div style="background:#e8f5ff;border:1.5px solid #b8d8f0;border-radius:14px;padding:10px 5px;text-align:center">
+      <div style="font-size:9px;font-weight:700;color:#333;margin-bottom:4px">⚙️ 고정</div>
+      <div style="font-size:11px;font-weight:900;color:#5090c0;line-height:1.2">${fmtS(fixedExp)}</div>
+      <div style="font-size:9px;color:#999;margin-top:3px">${fixedExpPct}%</div>
     </div>
-    <div class="ies-card saving" style="padding:10px 6px;text-align:center">
-      <div style="font-size:10px;font-weight:700;color:var(--purple);margin-bottom:4px">💎 저축</div>
+    <div style="background:#eef2ff;border:1.5px solid #c8d5f0;border-radius:14px;padding:10px 5px;text-align:center">
+      <div style="font-size:9px;font-weight:700;color:#333;margin-bottom:4px">💎 저축</div>
       <div style="font-size:11px;font-weight:900;color:var(--purple);line-height:1.2">${fmtS(totalSav)}</div>
-      <div style="font-size:9px;color:var(--purple);font-weight:700;margin-top:3px">${savPct}%</div>
+      <div style="font-size:9px;color:#999;margin-top:3px">${savPct}%</div>
     </div>
   </div>
-  <div style="background:#f0eeff;border:1.5px solid #d0c0f8;border-radius:13px;padding:10px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center" class="fade">
-    <div style="font-size:11px;font-weight:700;color:var(--text2)">💰 잔액</div>
-    <div style="font-size:16px;font-weight:900;color:${balAmt>=0?'var(--purple)':'var(--pink)'}">${fmtS(balAmt)} <span style="font-size:11px;font-weight:700">(${balPct}%)</span></div>
+  <div style="background:#eef2ff;border:1.5px solid #c8d5f0;border-radius:13px;padding:10px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center" class="fade">
+    <div style="font-size:11px;font-weight:700;color:#555">💰 잔액</div>
+    <div style="font-size:15px;font-weight:900;color:${balAmt>=0?'var(--purple)':'var(--pink)'}">${fmtS(balAmt)} <span style="font-size:10px;font-weight:700;color:#999">(${balPct}%)</span></div>
   </div>
   <div class="card fade" style="padding:12px 14px;background:linear-gradient(135deg,#f8f4ff,#f0f8ff)">
     <div class="ctitle">📌 ${isPastMonth?'이 달 고정 지출 (마감)':isFutureMonth?'이 달 고정 지출 전체':('남은 고정 지출 ('+todayDay+'일 이후)')}</div>
@@ -1041,7 +1165,7 @@ function renderDetail(){
   allExps.forEach(t=>{thisMonthCatMap[t.cat]=(thisMonthCatMap[t.cat]||0)+t.amt;});
 
   document.getElementById('detail-body').innerHTML=`
-  <div class="cum-banner fade" style="background:linear-gradient(135deg,#3d3554,#6040a0)">
+  <div class="cum-banner fade" style="background:linear-gradient(135deg,#4a6cc0,#7aaae8)">
     <div><div class="cum-lbl">${curYear}년 ${curMonth}월 총 지출</div><div class="cum-amt">${fmtS(allExps.reduce((s,t)=>s+t.amt,0))}</div>
       <div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:2px">고정 ${fmtS(fixedTotal)} · 변동 ${fmtS(varTotal)}</div>
     </div>
@@ -1154,8 +1278,20 @@ const allCats=[...new Set(recent6.flatMap(m=>Object.values(assetSnapshots[m]).ma
     ${r6T.map(({month,total},idx)=>{
       const pv=idx>0?r6T[idx-1].total:null,d=pv!==null?total-pv:null;
       const pct=pv&&pv!==0?Math.round((total-pv)/Math.abs(pv)*100):null;
-      const rightTxt=d!==null?`<span style="color:${d>=0?'var(--mint)':'var(--pink)'};font-size:8px;display:block">${d>=0?'▲':'▼'}${fmtS(Math.abs(d))}</span>${pct!==null?`<span style="color:${pct>=0?'var(--mint)':'var(--pink)'};font-size:8px">${pct>=0?'+':''}${pct}%</span>`:''}`:'';
-      return assetBarHTML(month.slice(2).replace('-','/'),Math.round(total/maxBar*100),'var(--purple)',fmtS(total),rightTxt);
+      const barW=Math.round(total/maxBar*100);
+      const shortBar=barW<35;
+      return`<div style="margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+          <div style="width:34px;font-size:10px;color:var(--text2);font-weight:600;flex-shrink:0">${month.slice(2).replace('-','/')}</div>
+          <div style="flex:1;height:20px;background:var(--gray);border-radius:6px;overflow:visible;position:relative">
+            <div style="width:${Math.max(barW,0.5)}%;height:100%;border-radius:6px;background:#7da8e8;position:relative">
+              ${!shortBar?`<span style="font-size:9px;font-weight:700;color:#fff;position:absolute;left:7px;top:50%;transform:translateY(-50%);white-space:nowrap">${fmtS(total)}</span>`:''}
+            </div>
+            ${shortBar?`<span style="font-size:9px;font-weight:700;color:var(--text2);position:absolute;left:calc(${Math.max(barW,0.5)}% + 5px);top:50%;transform:translateY(-50%);white-space:nowrap">${fmtS(total)}</span>`:''}
+          </div>
+        </div>
+        ${d!==null?`<div style="text-align:right;font-size:9px;font-weight:700;color:${d>=0?'#3dbf7a':'#e8637a'};white-space:nowrap;padding-right:2px">${d>=0?'▲':'▼'}${fmtS(Math.abs(d))} ${pct!==null?`(${pct>=0?'+':''}${pct}%)`:''}  </div>`:''}
+      </div>`;
     }).join('')}
   </div>
   <div class="card fade">
@@ -1424,7 +1560,7 @@ function renderPurpose(){
 function openTxModal(id){
   document.getElementById('tx-edit-id').value=id||'';
   const today=new Date().toISOString().slice(0,10);
-  if(id){const t=txList.find(t=>t.id===id);if(!t)return;document.getElementById('modal-tx-title').textContent='✏️ 수정';document.getElementById('tx-date').value=t.date;document.getElementById('tx-name').value=t.name;document.getElementById('tx-amt').value=t.amt;document.getElementById('tx-card').value=t.card||'';setTxType(t.type);setTimeout(()=>{document.getElementById('tx-cat').value=t.cat;},10);}
+  if(id){const t=txList.find(t=>t.id===id);if(!t)return;document.getElementById('modal-tx-title').textContent='✏️ 수정';document.getElementById('tx-date').value=t.date;document.getElementById('tx-name').value=t.name;document.getElementById('tx-amt').value=fmtNum(String(t.amt));document.getElementById('tx-card').value=t.card||'';setTxType(t.type);setTimeout(()=>{document.getElementById('tx-cat').value=t.cat;},10);}
   else{document.getElementById('modal-tx-title').textContent='💸 내역 추가';document.getElementById('tx-date').value=today;document.getElementById('tx-name').value='';document.getElementById('tx-amt').value='';document.getElementById('tx-card').value='';setTxType('지출');}
   document.getElementById('modal-tx').classList.add('on');
 }
@@ -1437,7 +1573,7 @@ function setTxType(t){
   document.getElementById('btn-type-inc').className='type-btn'+(t==='수입'?' ai':'');
 }
 function saveTx(){
-  const id=document.getElementById('tx-edit-id').value,date=document.getElementById('tx-date').value,name=document.getElementById('tx-name').value.trim(),cat=document.getElementById('tx-cat').value,amt=parseInt(document.getElementById('tx-amt').value)||0,card=document.getElementById('tx-card').value;
+  const id=document.getElementById('tx-edit-id').value,date=document.getElementById('tx-date').value,name=document.getElementById('tx-name').value.trim(),cat=document.getElementById('tx-cat').value,amt=parseFmt(document.getElementById('tx-amt').value),card=document.getElementById('tx-card').value;
   if(!date||!name||!amt)return alert('날짜, 항목명, 금액을 입력해주세요');
   const d=new Date(date),obj={id:id||uid(),date,name,cat,amt,card,type:txType,year:d.getFullYear(),month:d.getMonth()+1};
   if(id)txList=txList.map(t=>t.id===id?obj:t);else txList.push(obj);
@@ -1482,13 +1618,13 @@ function importJson(){
 function openSavingModal(id){
   document.getElementById('sv-edit-id').value=id||'';
   const today=new Date().toISOString().slice(0,10);
-  if(id){const s=savingList.find(s=>s.id===id);if(!s)return;document.getElementById('sv-date').value=s.date;document.getElementById('sv-name').value=s.name;document.getElementById('sv-cat').value=s.cat;document.getElementById('sv-amt').value=s.amt;document.getElementById('sv-memo').value=s.memo||'';}
+  if(id){const s=savingList.find(s=>s.id===id);if(!s)return;document.getElementById('sv-date').value=s.date;document.getElementById('sv-name').value=s.name;document.getElementById('sv-cat').value=s.cat;document.getElementById('sv-amt').value=fmtNum(String(s.amt));document.getElementById('sv-memo').value=s.memo||'';}
   else{document.getElementById('sv-date').value=today;document.getElementById('sv-name').value='';document.getElementById('sv-amt').value='';document.getElementById('sv-memo').value='';}
   document.getElementById('modal-saving').classList.add('on');
 }
 function closeSavingModal(){document.getElementById('modal-saving').classList.remove('on');}
 function saveSaving(){
-  const id=document.getElementById('sv-edit-id').value,date=document.getElementById('sv-date').value,name=document.getElementById('sv-name').value.trim(),cat=document.getElementById('sv-cat').value,amt=parseInt(document.getElementById('sv-amt').value)||0,memo=document.getElementById('sv-memo').value.trim();
+  const id=document.getElementById('sv-edit-id').value,date=document.getElementById('sv-date').value,name=document.getElementById('sv-name').value.trim(),cat=document.getElementById('sv-cat').value,amt=parseFmt(document.getElementById('sv-amt').value),memo=document.getElementById('sv-memo').value.trim();
   if(!date||!name||!amt)return alert('날짜, 항목명, 금액을 입력해주세요');
   const obj={id:id||uid(),date,name,cat,amt,memo};
   if(id)savingList=savingList.map(s=>s.id===id?obj:s);else savingList.push(obj);
@@ -1500,7 +1636,7 @@ function editPurpose(id){
   document.getElementById('pu-date').value=p.date;
   document.getElementById('pu-name').value=p.name;
   document.getElementById('pu-type').value=p.type;
-  document.getElementById('pu-amt').value=p.amt;
+  document.getElementById('pu-amt').value=fmtNum(String(p.amt));
   document.getElementById('pu-memo').value=p.memo||'';
   document.getElementById('pu-edit-id').value=id;
   document.getElementById('pu-edit-src').value='purpose';
@@ -1511,7 +1647,7 @@ function editPurposeSaving(id){
   document.getElementById('pu-date').value=s.date;
   document.getElementById('pu-name').value=s.name;
   document.getElementById('pu-type').value='저축';
-  document.getElementById('pu-amt').value=s.amt;
+  document.getElementById('pu-amt').value=fmtNum(String(s.amt));
   document.getElementById('pu-memo').value=s.memo||'';
   document.getElementById('pu-edit-id').value=id;
   document.getElementById('pu-edit-src').value='saving';
@@ -1523,7 +1659,7 @@ function openPurposeModal(){document.getElementById('pu-date').value=new Date().
 function closePurposeModal(){document.getElementById('modal-purpose').classList.remove('on');}
 function savePurpose(){
   const id=document.getElementById('pu-edit-id').value,src=document.getElementById('pu-edit-src').value;
-  const date=document.getElementById('pu-date').value,name=document.getElementById('pu-name').value.trim(),type=document.getElementById('pu-type').value,amt=parseInt(document.getElementById('pu-amt').value)||0,memo=document.getElementById('pu-memo').value.trim();
+  const date=document.getElementById('pu-date').value,name=document.getElementById('pu-name').value.trim(),type=document.getElementById('pu-type').value,amt=parseFmt(document.getElementById('pu-amt').value),memo=document.getElementById('pu-memo').value.trim();
   if(!date||!name||!amt)return alert('날짜, 항목명, 금액을 입력해주세요');
   if(src==='saving'&&id){
     // 저축 탭 항목 수정
@@ -1538,13 +1674,13 @@ function savePurpose(){
 }
 function openFixedModal(id){
   document.getElementById('fx-edit-id').value=id||'';
-  if(id){const f=fixedList.find(f=>f.id===id);if(!f)return;document.getElementById('fx-name').value=f.name;document.getElementById('fx-amt').value=f.amt;document.getElementById('fx-cat').value=f.cat;document.getElementById('fx-bank').value=f.bank||'';document.getElementById('fx-due').value=f.due||'';}
+  if(id){const f=fixedList.find(f=>f.id===id);if(!f)return;document.getElementById('fx-name').value=f.name;document.getElementById('fx-amt').value=fmtNum(String(f.amt));document.getElementById('fx-cat').value=f.cat;document.getElementById('fx-bank').value=f.bank||'';document.getElementById('fx-due').value=f.due||'';}
   else{['fx-name','fx-bank','fx-due'].forEach(i=>document.getElementById(i).value='');document.getElementById('fx-amt').value='';}
   document.getElementById('modal-fixed').classList.add('on');
 }
 function closeFixedModal(){document.getElementById('modal-fixed').classList.remove('on');}
 function saveFixed(){
-  const id=document.getElementById('fx-edit-id').value,name=document.getElementById('fx-name').value.trim(),amt=parseInt(document.getElementById('fx-amt').value)||0,cat=document.getElementById('fx-cat').value,bank=document.getElementById('fx-bank').value.trim(),due=document.getElementById('fx-due').value.trim();
+  const id=document.getElementById('fx-edit-id').value,name=document.getElementById('fx-name').value.trim(),amt=parseFmt(document.getElementById('fx-amt').value),cat=document.getElementById('fx-cat').value,bank=document.getElementById('fx-bank').value.trim(),due=document.getElementById('fx-due').value.trim();
   if(!name||!amt)return alert('항목명과 금액을 입력해주세요');
   const obj={id:id||uid(),name,amt,cat,bank,due};
   if(id)fixedList=fixedList.map(f=>f.id===id?obj:f);else fixedList.push(obj);
@@ -1596,7 +1732,7 @@ function renderAssetInputList(){
   document.getElementById('asset-input-list').innerHTML=html||'<div class="empty">항목이 없어요</div>';
 }
 function addAssetItem(){
-  const name=document.getElementById('as-new-name').value.trim(),cat=document.getElementById('as-new-cat').value,amt=parseInt(document.getElementById('as-new-amt').value)||0;
+  const name=document.getElementById('as-new-name').value.trim(),cat=document.getElementById('as-new-cat').value,amt=parseFmt(document.getElementById('as-new-amt').value);
   if(!name)return alert('자산명을 입력해주세요');
   assetModalItems[name]={cat,amt,prevAmt:null};
   document.getElementById('as-new-name').value='';document.getElementById('as-new-amt').value='';

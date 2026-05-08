@@ -931,7 +931,8 @@ function save(){
   localStorage.setItem('pu',JSON.stringify(purposeList));
   localStorage.setItem('fx',JSON.stringify(fixedList));
   localStorage.setItem('as',JSON.stringify(assetSnapshots));
-  if(window.fbSave && window._fbReady) window.fbSave();  // ← 이렇게 변경
+  console.log('save 호출됨, fbReady:', window._fbReady);
+  if(window.fbSave && window._fbReady) window.fbSave();
 }
 function fmtNum(v){v=String(v||'').replace(/[^0-9]/g,'');return v.replace(/\B(?=(\d{3})+(?!\d))/g,',');}
 function parseFmt(v){return parseInt(String(v||'0').replace(/,/g,''))||0;}

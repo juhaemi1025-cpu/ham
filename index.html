@@ -144,6 +144,47 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 .empty{text-align:center;padding:30px;color:var(--text3);font-size:12px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}.fade{animation:fadeUp .22s ease both}
 </style>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const app = initializeApp({
+  apiKey: "AIzaSyAFXOtZyxPJjxWHndlIyA1UXpDVun3zQI0",
+  authDomain: "ham-budget-15f3a.firebaseapp.com",
+  projectId: "ham-budget-15f3a",
+  storageBucket: "ham-budget-15f3a.firebasestorage.app",
+  messagingSenderId: "683942567787",
+  appId: "1:683942567787:web:472446b212e659527d362e"
+});
+const db = getFirestore(app);
+
+window.fbSave = async () => {
+  try {
+    await setDoc(doc(db, 'budget', 'data'), {
+      tx: window.txList, sv: window.savingList,
+      pu: window.purposeList, fx: window.fixedList,
+      as: window.assetSnapshots, updatedAt: new Date().toISOString()
+    });
+  } catch(e) { console.error(e); }
+};
+
+window.fbLoad = async () => {
+  try {
+    const snap = await getDoc(doc(db, 'budget', 'data'));
+    if (snap.exists()) {
+      const d = snap.data();
+      if(d.tx) { window.txList = txList = d.tx.map(t=>{const dd=new Date(t.date);return{...t,year:dd.getFullYear(),month:dd.getMonth()+1};}); localStorage.setItem('tx',JSON.stringify(d.tx)); }
+      if(d.sv) { window.savingList = savingList = d.sv; localStorage.setItem('sv',JSON.stringify(d.sv)); }
+      if(d.pu) { window.purposeList = purposeList = d.pu; localStorage.setItem('pu',JSON.stringify(d.pu)); }
+      if(d.fx) { window.fixedList = fixedList = d.fx; localStorage.setItem('fx',JSON.stringify(d.fx)); }
+      if(d.as) { window.assetSnapshots = assetSnapshots = d.as; localStorage.setItem('as',JSON.stringify(d.as)); }
+      renderAll();
+    } else {
+      await window.fbSave(); // 없으면 현재 데이터 업로드
+    }
+  } catch(e) { console.error('Firebase 오류:', e); }
+};
+</script>
 </head>
 <body>
 <div id="pg-home" class="pg on"><div class="pghd"><div class="pgtitle">월별 <em>리포트</em> 📊</div><button onclick="openTxModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button><button onclick="exportData()" style="background:#2ea868;color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">💾 백업</button></div><div id="home-ym"></div><div id="home-body"></div></div>
@@ -867,6 +908,11 @@ function load(){
     }
   }
   txList=txList.map(t=>{const d=new Date(t.date);return{...t,year:d.getFullYear(),month:d.getMonth()+1};});
+    window.txList=txList;
+  window.savingList=savingList;
+  window.purposeList=purposeList;
+  window.fixedList=fixedList;
+  window.assetSnapshots=assetSnapshots;
 }
 function save(){
   localStorage.setItem('tx',JSON.stringify(txList));
@@ -874,6 +920,7 @@ function save(){
   localStorage.setItem('pu',JSON.stringify(purposeList));
   localStorage.setItem('fx',JSON.stringify(fixedList));
   localStorage.setItem('as',JSON.stringify(assetSnapshots));
+    if(window.fbSave) window.fbSave();
 }
 function fmtNum(v){v=String(v||'').replace(/[^0-9]/g,'');return v.replace(/\B(?=(\d{3})+(?!\d))/g,',');}
 function parseFmt(v){return parseInt(String(v||'0').replace(/,/g,''))||0;}
@@ -1750,6 +1797,7 @@ document.querySelectorAll('.modal-bg').forEach(bg=>{bg.addEventListener('click',
 load();
 const _n=new Date();curYear=_n.getFullYear();curMonth=_n.getMonth()+1;
 renderHome();
+  if(window.fbLoad) window.fbLoad();
 </script>
 </body>
 </html>

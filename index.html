@@ -161,11 +161,12 @@ const db = getFirestore(app);
 window.fbSave = async () => {
   try {
     await setDoc(doc(db, 'budget', 'data'), {
-      tx: window.txList, sv: window.savingList,
-      pu: window.purposeList, fx: window.fixedList,
-      as: window.assetSnapshots, updatedAt: new Date().toISOString()
+      tx: window.txList || [], sv: window.savingList || [],
+      pu: window.purposeList || [], fx: window.fixedList || [],
+      as: window.assetSnapshots || {}, updatedAt: new Date().toISOString()
     });
-  } catch(e) { console.error(e); }
+    console.log('Firebase 저장 완료!');
+  } catch(e) { console.error('저장 실패:', e); }
 };
 
 window.fbLoad = async () => {
@@ -173,25 +174,23 @@ window.fbLoad = async () => {
     const snap = await getDoc(doc(db, 'budget', 'data'));
     if (snap.exists()) {
       const d = snap.data();
-      if(d.tx) {
-        txList = d.tx.map(t=>{const dd=new Date(t.date);return{...t,year:dd.getFullYear(),month:dd.getMonth()+1};});
-        localStorage.setItem('tx', JSON.stringify(d.tx));
-      }
+      if(d.tx) { txList = d.tx.map(t=>{const dd=new Date(t.date);return{...t,year:dd.getFullYear(),month:dd.getMonth()+1};}); localStorage.setItem('tx', JSON.stringify(d.tx)); }
       if(d.sv) { savingList = d.sv; localStorage.setItem('sv', JSON.stringify(d.sv)); }
       if(d.pu) { purposeList = d.pu; localStorage.setItem('pu', JSON.stringify(d.pu)); }
       if(d.fx) { fixedList = d.fx; localStorage.setItem('fx', JSON.stringify(d.fx)); }
       if(d.as) { assetSnapshots = d.as; localStorage.setItem('as', JSON.stringify(d.as)); }
-      window.txList = txList;
-      window.savingList = savingList;
-      window.purposeList = purposeList;
-      window.fixedList = fixedList;
+      window.txList = txList; window.savingList = savingList;
+      window.purposeList = purposeList; window.fixedList = fixedList;
       window.assetSnapshots = assetSnapshots;
       renderAll();
-    } else {
-      await window.fbSave();
+      console.log('Firebase 불러오기 완료!');
     }
-  } catch(e) { console.error('Firebase 오류:', e); }
+  } catch(e) { console.error('불러오기 실패:', e); }
 };
+
+window.addEventListener('load', () => {
+  setTimeout(() => { if(window.fbLoad) window.fbLoad(); }, 500);
+});
 </script>
 </head>
 <body>
@@ -1805,7 +1804,6 @@ document.querySelectorAll('.modal-bg').forEach(bg=>{bg.addEventListener('click',
 load();
 const _n=new Date();curYear=_n.getFullYear();curMonth=_n.getMonth()+1;
 renderHome();
-  if(window.fbLoad) window.fbLoad();
 </script>
 </body>
 </html>

@@ -1062,7 +1062,9 @@ function renderHome(){
   const ws=weekRemain<0?'over':weekRemain<100000?'warn':'ok';
   const cardMap={};allExps.forEach(t=>{const k=t.card||'현금/기타';cardMap[k]=(cardMap[k]||0)+t.amt;});
   const cardE=Object.entries(cardMap).sort((a,b)=>b[1]-a[1]),maxCard=cardE[0]?cardE[0][1]:1;
-  const catMap={};allExps.forEach(t=>{catMap[t.cat]=(catMap[t.cat]||0)+t.amt;});
+  const varExps=allExps.filter(t=>t.cat!=='고정 지출');
+const varTotal=varExps.reduce((s,t)=>s+t.amt,0);
+const catMap={};allExps.forEach(t=>{catMap[t.cat]=(catMap[t.cat]||0)+t.amt;});
   const catE=Object.entries(catMap).sort((a,b)=>b[1]-a[1]),maxCat=catE[0]?catE[0][1]:1;
   const weeks=getWeeksInMonth(curYear,curMonth),now=new Date();
   const weekData=weeks.map((w,i)=>{
@@ -1192,7 +1194,7 @@ function renderHome(){
   </div>
   <div class="card fade">
     <div class="ctitle">📊 카테고리별 지출 (가로 막대)</div>
-    ${catE.length===0?'<div class="empty">지출 내역이 없어요</div>':catE.map(([cat,amt])=>`<div class="brow"><div class="bmeta"><div class="bname"><div class="bdot" style="background:${CAT_COLOR[cat]||'#ccc'}"></div>${CAT_EMOJI[cat]||'📦'} ${cat}</div><div class="bval">${fmtS(amt)} (${totalExp?Math.round(amt/totalExp*100):0}%)</div></div><div class="btrack"><div class="bfill" style="width:${Math.round(amt/maxCat*100)}%;background:${CAT_COLOR[cat]||'#ccc'}"></div></div></div>`).join('')}
+    ${catE.length===0?'<div class="empty">지출 내역이 없어요</div>':catE.map(([cat,amt])=>`<div class="brow"><div class="bmeta"><div class="bname"><div class="bdot" style="background:${CAT_COLOR[cat]||'#ccc'}"></div>${CAT_EMOJI[cat]||'📦'} ${cat}</div><div class="bval">${fmtS(amt)} (${totalExp?Math.round(amt/varTotal*100):0}%)</div></div><div class="btrack"><div class="bfill" style="width:${Math.round(amt/maxCat*100)}%;background:${CAT_COLOR[cat]||'#ccc'}"></div></div></div>`).join('')}
   </div>
   <div class="card fade">
     <div class="ctitle">💳 카드/결제수단별 지출</div>
@@ -1239,10 +1241,10 @@ function renderDetail(){
     <div style="font-size:10px;font-weight:700;color:var(--text2);margin-bottom:8px">${CAT_EMOJI[detailCatFilter]||'📦'} ${detailCatFilter} · ${curMonth}월 지출</div>
     <div style="display:flex;align-items:center;gap:10px">
       <div style="font-size:22px;font-weight:900;color:var(--pink)">${fmtS(total)}</div>
-      <div style="font-size:11px;color:var(--text3)">${allExps.reduce((s,t)=>s+t.amt,0)>0?Math.round(total/allExps.reduce((s,t)=>s+t.amt,0)*100):0}%</div>
+      <div style="font-size:11px;color:var(--text3)">${allExps.reduce((s,t)=>s+t.amt,0)>0?Math.round(total/allExps.filter(t=>t.cat!=='고정 지출').reduce((s,t)=>s+t.amt,0)*100):0}%</div>
     </div>
     <div style="margin-top:8px;height:8px;background:var(--gray);border-radius:8px;overflow:hidden">
-      <div style="height:100%;border-radius:8px;background:${CAT_COLOR[detailCatFilter]||'var(--purple)'};width:${allExps.reduce((s,t)=>s+t.amt,0)>0?Math.round(total/allExps.reduce((s,t)=>s+t.amt,0)*100):0}%"></div>
+      <div style="height:100%;border-radius:8px;background:${CAT_COLOR[detailCatFilter]||'var(--purple)'};width:${allExps.reduce((s,t)=>s+t.amt,0)>0?Math.round(total/allExps.filter(t=>t.cat!=='고정 지출').reduce((s,t)=>s+t.amt,0)*100):0}%"></div>
     </div>
     <div style="font-size:9px;color:var(--text3);margin-top:4px">이번 달 전체 지출 대비</div>
   </div>`:''}

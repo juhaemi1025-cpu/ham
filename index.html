@@ -173,14 +173,22 @@ window.fbLoad = async () => {
     const snap = await getDoc(doc(db, 'budget', 'data'));
     if (snap.exists()) {
       const d = snap.data();
-      if(d.tx) { window.txList = txList = d.tx.map(t=>{const dd=new Date(t.date);return{...t,year:dd.getFullYear(),month:dd.getMonth()+1};}); localStorage.setItem('tx',JSON.stringify(d.tx)); }
-      if(d.sv) { window.savingList = savingList = d.sv; localStorage.setItem('sv',JSON.stringify(d.sv)); }
-      if(d.pu) { window.purposeList = purposeList = d.pu; localStorage.setItem('pu',JSON.stringify(d.pu)); }
-      if(d.fx) { window.fixedList = fixedList = d.fx; localStorage.setItem('fx',JSON.stringify(d.fx)); }
-      if(d.as) { window.assetSnapshots = assetSnapshots = d.as; localStorage.setItem('as',JSON.stringify(d.as)); }
+      if(d.tx) {
+        txList = d.tx.map(t=>{const dd=new Date(t.date);return{...t,year:dd.getFullYear(),month:dd.getMonth()+1};});
+        localStorage.setItem('tx', JSON.stringify(d.tx));
+      }
+      if(d.sv) { savingList = d.sv; localStorage.setItem('sv', JSON.stringify(d.sv)); }
+      if(d.pu) { purposeList = d.pu; localStorage.setItem('pu', JSON.stringify(d.pu)); }
+      if(d.fx) { fixedList = d.fx; localStorage.setItem('fx', JSON.stringify(d.fx)); }
+      if(d.as) { assetSnapshots = d.as; localStorage.setItem('as', JSON.stringify(d.as)); }
+      window.txList = txList;
+      window.savingList = savingList;
+      window.purposeList = purposeList;
+      window.fixedList = fixedList;
+      window.assetSnapshots = assetSnapshots;
       renderAll();
     } else {
-      await window.fbSave(); // 없으면 현재 데이터 업로드
+      await window.fbSave();
     }
   } catch(e) { console.error('Firebase 오류:', e); }
 };

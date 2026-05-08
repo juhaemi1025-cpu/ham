@@ -1066,7 +1066,8 @@ function renderHome(){
 const varTotal=varExps.reduce((s,t)=>s+t.amt,0);
 const varExps=allExps.filter(t=>t.cat!=='고정 지출');
 const varTotal=varExps.reduce((s,t)=>s+t.amt,0);
-const catMap={};allExps.forEach(t=>{catMap[t.cat]=(catMap[t.cat]||0)+t.amt;});
+const catMap={};allExps.filter(t=>t.cat!=='고정 지출').forEach(t=>{catMap[t.cat]=(catMap[t.cat]||0)+t.amt;});
+const varOnlyTotal=allExps.filter(t=>t.cat!=='고정 지출').reduce((s,t)=>s+t.amt,0)||1;
 const catE=Object.entries(catMap).sort((a,b)=>b[1]-a[1]),maxCat=catE[0]?catE[0][1]:1;
   const weeks=getWeeksInMonth(curYear,curMonth),now=new Date();
   const weekData=weeks.map((w,i)=>{
@@ -1196,7 +1197,7 @@ const catE=Object.entries(catMap).sort((a,b)=>b[1]-a[1]),maxCat=catE[0]?catE[0][
   </div>
   <div class="card fade">
     <div class="ctitle">📊 카테고리별 지출 (가로 막대)</div>
-    ${catE.length===0?'<div class="empty">지출 내역이 없어요</div>':catE.map(([cat,amt])=>`<div class="brow"><div class="bmeta"><div class="bname"><div class="bdot" style="background:${CAT_COLOR[cat]||'#ccc'}"></div>${CAT_EMOJI[cat]||'📦'} ${cat}</div><div class="bval">${fmtS(amt)} (${totalExp?Math.round(amt/varTotal*100):0}%)</div></div><div class="btrack"><div class="bfill" style="width:${Math.round(amt/maxCat*100)}%;background:${CAT_COLOR[cat]||'#ccc'}"></div></div></div>`).join('')}
+    ${catE.length===0?'<div class="empty">지출 내역이 없어요</div>':catE.map(([cat,amt])=>`<div class="brow"><div class="bmeta"><div class="bname"><div class="bdot" style="background:${CAT_COLOR[cat]||'#ccc'}"></div>${CAT_EMOJI[cat]||'📦'} ${cat}</div><div class="bval">${fmtS(amt)} (${Math.round(amt/varOnlyTotal*100)}%)</div></div><div class="btrack"><div class="bfill" style="width:${Math.round(amt/maxCat*100)}%;background:${CAT_COLOR[cat]||'#ccc'}"></div></div></div>`).join('')}
   </div>
   <div class="card fade">
     <div class="ctitle">💳 카드/결제수단별 지출</div>

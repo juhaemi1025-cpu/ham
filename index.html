@@ -158,44 +158,44 @@ const app = initializeApp({
 });
 const db = getFirestore(app);
 
-window.fbSave = async () => {
+window._fbSave = async function() {
   try {
     await setDoc(doc(db, 'budget', 'data'), {
-      tx: window.txList || [], sv: window.savingList || [],
-      pu: window.purposeList || [], fx: window.fixedList || [],
-      as: window.assetSnapshots || {}, updatedAt: new Date().toISOString()
+      tx: txList || [], sv: savingList || [],
+      pu: purposeList || [], fx: fixedList || [],
+      as: assetSnapshots || {}, updatedAt: new Date().toISOString()
     });
-    console.log('Firebase 저장 완료!');
-  } catch(e) { console.error('저장 실패:', e); }
+    console.log('✅ Firebase 저장 완료');
+  } catch(e) { console.error('Firebase 저장 실패:', e); }
 };
 
-window.fbLoad = async () => {
+window._fbLoad = async function() {
   try {
     const snap = await getDoc(doc(db, 'budget', 'data'));
-    if (snap.exists()) {
+    if(snap.exists()) {
       const d = snap.data();
-      if(d.tx) { txList = d.tx.map(t=>{const dd=new Date(t.date);return{...t,year:dd.getFullYear(),month:dd.getMonth()+1};}); localStorage.setItem('tx', JSON.stringify(d.tx)); }
+      if(d.tx && d.tx.length > 0) {
+        txList = d.tx.map(t => { const dd=new Date(t.date); return {...t, year:dd.getFullYear(), month:dd.getMonth()+1}; });
+        localStorage.setItem('tx', JSON.stringify(d.tx));
+      }
       if(d.sv) { savingList = d.sv; localStorage.setItem('sv', JSON.stringify(d.sv)); }
       if(d.pu) { purposeList = d.pu; localStorage.setItem('pu', JSON.stringify(d.pu)); }
       if(d.fx) { fixedList = d.fx; localStorage.setItem('fx', JSON.stringify(d.fx)); }
       if(d.as) { assetSnapshots = d.as; localStorage.setItem('as', JSON.stringify(d.as)); }
-      window.txList = txList; window.savingList = savingList;
-      window.purposeList = purposeList; window.fixedList = fixedList;
-      window.assetSnapshots = assetSnapshots;
       renderAll();
-      console.log('Firebase 불러오기 완료!');
+      console.log('✅ Firebase 불러오기 완료');
+    } else {
+      await window._fbSave();
     }
-  } catch(e) { console.error('불러오기 실패:', e); }
+  } catch(e) { console.error('Firebase 오류:', e); }
 };
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    if(window.fbLoad) window.fbLoad().then(() => {
-      window._fbReady = true;  // 로드 완료 표시
-    });
-  }, 500);
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => window._fbLoad(), 800);
 });
 </script>
+
+  
 </head>
 <body>
 <div id="pg-home" class="pg on"><div class="pghd"><div class="pgtitle">월별 <em>리포트</em> 📊</div><button onclick="openTxModal()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button><button onclick="exportData()" style="background:#2ea868;color:#fff;border:none;border-radius:9px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">💾 백업</button></div><div id="home-ym"></div><div id="home-body"></div></div>
@@ -931,8 +931,7 @@ function save(){
   localStorage.setItem('pu',JSON.stringify(purposeList));
   localStorage.setItem('fx',JSON.stringify(fixedList));
   localStorage.setItem('as',JSON.stringify(assetSnapshots));
-  console.log('save 호출됨, fbReady:', window._fbReady);
-  if(window.fbSave && window._fbReady) window.fbSave();
+  if(window._fbSave) window._fbSave();
 }
 function fmtNum(v){v=String(v||'').replace(/[^0-9]/g,'');return v.replace(/\B(?=(\d{3})+(?!\d))/g,',');}
 function parseFmt(v){return parseInt(String(v||'0').replace(/,/g,''))||0;}
@@ -1639,9 +1638,7 @@ function saveTx(){
   save();closeTxModal();renderAll();
 }
 function delTx(id){
-  txList=txList.filter(t=>t.id!==id);
-  window.txList=txList;
-  console.log('delTx 호출됨, 남은 건수:', txList.length);
+  txList = txList.filter(t => t.id !== id);
   save();
   renderAll();
 }

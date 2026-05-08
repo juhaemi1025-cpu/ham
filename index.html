@@ -1638,7 +1638,14 @@ function saveTx(){
   if(id)txList=txList.map(t=>t.id===id?obj:t);else txList.push(obj);
   save();closeTxModal();renderAll();
 }
-function delTx(id){if(!confirm('삭제할까요?'))return;txList=txList.filter(t=>t.id!==id);save();renderAll();}
+function delTx(id){
+  if(!confirm('삭제할까요?'))return;
+  txList=txList.filter(t=>t.id!==id);
+  window.txList=txList;
+  console.log('delTx 호출됨, 남은 건수:', txList.length);
+  save();
+  renderAll();
+}
 function importJson(){
   try{
     const data=JSON.parse(document.getElementById('import-json').value);

@@ -1064,6 +1064,8 @@ function renderHome(){
   const cardE=Object.entries(cardMap).sort((a,b)=>b[1]-a[1]),maxCard=cardE[0]?cardE[0][1]:1;
   const varExps=allExps.filter(t=>t.cat!=='고정 지출');
 const varTotal=varExps.reduce((s,t)=>s+t.amt,0);
+const varExps=allExps.filter(t=>t.cat!=='고정 지출');
+const varTotal=varExps.reduce((s,t)=>s+t.amt,0);
 const catMap={};allExps.forEach(t=>{catMap[t.cat]=(catMap[t.cat]||0)+t.amt;});
   const catE=Object.entries(catMap).sort((a,b)=>b[1]-a[1]),maxCat=catE[0]?catE[0][1]:1;
   const weeks=getWeeksInMonth(curYear,curMonth),now=new Date();
